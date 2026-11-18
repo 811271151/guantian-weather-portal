@@ -1,0 +1,51 @@
+Use case: scientific-educational / infographic-diagram.
+Create ONE polished, high-resolution Chinese comic-style educational architecture poster about an actual local weather Agent product. Portrait large poster, preferably 2160×3840, enough crisp legible Simplified Chinese text for reading and interview study. Comic panels, hand-inked outlines, expressive tiny anthropomorphic component characters, restrained warm paper texture, clear typographic hierarchy and spacious aligned boxes. It must be a professional technical teaching poster, NOT a generic decorative illustration. All arrows must be unambiguous and technically correct. Characters personify existing components, never add fictional infrastructure. Most area devoted to informative architecture and execution, not decoration.
+
+Main title exact: “一张图讲透：本地大模型天气 Agent”
+Subtitle: “从前端提问，到模型推理，再到真实天气答案”
+
+TOP PANEL: “① 先认识六位角色”
+Show a clean compact architectural map, with these precisely labeled component cards and duties:
+“前端｜React + Tailwind + Vite” — “收集问题、渲染 Markdown、展示执行进度”
+“API Server｜FastAPI · 8000” — “接收请求、管理会话、校验数据、返回事件”
+“Agent 编排｜LangChain + Python 循环” — “组织消息、描述工具、执行调用循环”
+“Ollama｜本地推理服务 · 11434” — “加载模型、管理运行资源、提供模型 API”
+“Qwen3.5:9B｜模型权重” — “理解问题、生成回答、提出工具调用”
+“天气工具｜Python 函数” — “search_locations / get_weather”
+Place frontend outside a backend boundary; inside boundary API Server, LangChain/Python loop and Python weather tools. Place Ollama and Qwen in a separate local inference boundary, with Qwen INSIDE Ollama runtime, connected to a GPU icon “RTX 4060 · GPU 推理”. Weather tools connect out to cloud “Open-Meteo｜外部天气 API”. Draw arrows Frontend ↔ API Server ↔ Agent; Agent ↔ Ollama; Ollama uses Qwen internally; Agent ↔ Python weather tools ↔ external weather API. Do NOT draw weather API as accessed by model itself. Include SQLite small cylinder connected ONLY to API Server: “SQLite｜城市、规则、天气快照”.
+
+MIDDLE MAIN COMIC: “② 跟着一次问询走完全程”
+Six numbered panels with speech bubbles and clear directional connectors:
+1 user/browser: “江苏南京明天会下雨吗？” Small label “POST /api/chat · 问题 + 会话 ID + thinking”
+2 backend clerk / LangChain conductor: “带上历史消息和工具说明，请模型判断下一步。”
+   mini arrow “FastAPI → LangChain → Ollama → Qwen”
+3 Qwen brain proposes structured tool call: “先找南京坐标！” code bubble “search_locations(city='南京')”
+   caption exact “模型只提出调用请求，不直接执行 Python。”
+4 Python weather worker: “后端执行城市搜索，得到坐标。” Then model proposes “get_weather(latitude=…, longitude=…, days=2)” and Python worker requests Open-Meteo.
+   caption “取得坐标 → 再请求天气预报”
+5 Tools give data back to conductor; labeled data packet “ToolMessage：日期、温度、降水概率、风速”
+   conductor returns to model with arrow and speech “真实数据已到，再组织回答。”
+   caption “需要更多数据时，继续循环；否则结束。”
+6 Browser shows a beautifully rendered generic sample table with placeholders “日期 / 天气 / 降水概率” and cells “明天 / 以工具数据为准 / 以工具数据为准”, with bold conclusion shape but no fabricated actual weather.
+   arrow back “Qwen → Ollama → LangChain → API Server → 前端”
+   caption “SSE 事件：执行阶段 → 工具结果 → 最终回答”
+   small note “当前版本：进度实时显示，最终答案整段返回。”
+
+LOWER PANEL: “③ 两条业务链路，别混淆”
+Parallel lanes:
+A “天气看板（无需大模型）”： “前端 → FastAPI → 天气服务 → Open-Meteo” and small return arrow, “城市与规则保存在 SQLite；服务运行时每 5 分钟刷新”
+B “智能问询（需要 Agent）”： “前端 → FastAPI → LangChain ↔ Ollama / Qwen” with branch from LangChain “调用 Python 天气工具”, and caption “模型决定下一步，程序真正执行，结果再交给模型。”
+
+BOTTOM INTERVIEW CHEAT SHEET: “④ 面试时抓住这四点”
+Four clearly numbered concise text cards:
+“模型 ≠ Ollama：模型负责推理；Ollama 负责把模型跑起来。”
+“LangChain ≠ API Server：前者提供编排组件；后者把业务能力开放为 HTTP 接口。”
+“Tool Calling ≠ 模型执行代码：模型给出名称和参数，后端校验并执行。”
+“Thinking ≠ 训练：思考增加推理过程，不更新模型权重。”
+Final strip title “启动与访问”
+“启动 Ollama → 启动 FastAPI → 浏览器访问 127.0.0.1:8000”
+“前端开发：pnpm dev · 5173，代理 /api 到 8000；生产构建：pnpm build，由 FastAPI 提供页面”
+Small callout: “本项目的工具循环是 Python 显式实现；LangChain 提供模型、工具与消息组件。”
+Do not claim production authentication, training, cloud model inference, automatic MCP registration or token-by-token final answer streaming. Do not use npm commands. Avoid excessive tiny text, tangled arrows, unreadable character glyphs, fake benchmark data, branded copyrighted mascots, or giant decorative backgrounds. Chinese text is essential; keep lettering crisp.
+
+Final correction: In the lower-right intelligent-query lane, Python weather tools connect bidirectionally to LangChain, not directly to Ollama. All other content preserved. Generated with the built-in image_gen tool.

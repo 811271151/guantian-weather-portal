@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@theme {
+  --font-sans: "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+@layer base {
+  body {
+    @apply m-0 antialiased;
+  }
+  button {
+    @apply cursor-pointer transition-colors;
+  }
+  button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  button:focus-visible,
+  a:focus-visible,
+  summary:focus-visible {
+    @apply outline-2 outline-offset-4 outline-teal-500;
+  }
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  }
+  .section-title {
+    @apply text-sm font-semibold text-slate-800;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-teal-700 px-4 py-2.5 text-xs font-medium text-white shadow-sm hover:bg-teal-800 disabled:hover:bg-teal-700;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-lg px-2 py-2 text-xs text-teal-700 hover:bg-teal-50;
+  }
+  .form-input {
+    @apply rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-50;
+  }
+  .metric-label {
+    @apply mb-1.5 flex items-center gap-1 text-[9px] text-slate-400;
+  }
+}
+.markdown-content {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #334155;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.markdown-content > :first-child {
+  margin-top: 0;
+}
+.markdown-content > :last-child {
+  margin-bottom: 0;
+}
+.markdown-content p {
+  margin: 0 0 1em;
+}
+.markdown-content strong {
+  font-weight: 650;
+  color: #0f403b;
+}
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  color: #1e293b;
+  font-weight: 650;
+  line-height: 1.5;
+  margin: 1.3em 0 0.6em;
+}
+.markdown-content h1 {
+  font-size: 1.35em;
+}
+.markdown-content h2 {
+  font-size: 1.2em;
+}
+.markdown-content h3 {
+  font-size: 1.08em;
+}
+.markdown-content ul {
+  list-style: disc;
+  padding-left: 1.5em;
+  margin: 0.7em 0 1.1em;
+}
+.markdown-content ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+  margin: 0.7em 0 1.1em;
+}
+.markdown-content li {
+  padding-left: 0.2em;
+  margin: 0.3em 0;
+}
+.markdown-content li > p {
+  margin: 0;
+}
+.markdown-content blockquote {
+  border-left: 3px solid #70b2a7;
+  background: #edf7f3;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 1em 0;
+  color: #53716a;
+}
+.markdown-content a {
+  color: #087f75;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.markdown-content hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 1.5em 0;
+}
+.markdown-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #dfe7e8;
+  border-radius: 10px;
+  margin: 1.2em 0;
+  background: #fff;
+}
+.markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.markdown-content th {
+  background: #edf5f3;
+  color: #35645b;
+  text-align: left;
+  font-weight: 600;
+  padding: 11px 14px;
+  border-bottom: 1px solid #d8e7e1;
+}
+.markdown-content td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #edf1f3;
+}
+.markdown-content tr:last-child td {
+  border-bottom: 0;
+}
+.markdown-content tbody tr:nth-child(even) {
+  background: #f8fafb;
+}
+.markdown-content code {
+  font-family: Consolas, monospace;
+  font-size: 0.87em;
+  border-radius: 4px;
+  background: #e9eef0;
+  color: #275c54;
+  padding: 2px 5px;
+}
+.markdown-content pre {
+  background: #152a32;
+  color: #dce9ed;
+  border-radius: 10px;
+  padding: 17px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 1em 0;
+}
+.markdown-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  white-space: pre;
+}
+.markdown-content input[type="checkbox"] {
+  accent-color: #0f766e;
+  margin-right: 6px;
+}
+.markdown-content img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+@media (max-width: 640px) {
+  .markdown-content {
+    font-size: 13px;
+  }
+  .markdown-content th,
+  .markdown-content td {
+    padding: 9px 11px;
+  }
+}
